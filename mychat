@@ -69,4 +69,6 @@ while True:
   )
   if user_input.lower() in ["выход","exit"]:
         break
+  if len(messages)>6:
+      messages = messages[-6:]
   print(response.message.content + '\n')
