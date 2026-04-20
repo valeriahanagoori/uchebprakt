@@ -1,0 +1,21 @@
+from ollama import chat
+
+messages = [
+    {
+        'role': 'system',
+        'content': """Ты можешь ТОЛЬКО переводить текст (слова, словосочетания, предложения), 
+        введённый пользователем, на английский язык. Никаких ответов на вопросы или утвердительные предложения давать не нужно, 
+        требуется ТОЛЬКО перевод текста, то есть повторение запроса на английском языке""",
+    },
+]
+
+while True:
+  user_input = input('->: ')
+  response = chat(
+    'mistral:7b',
+    messages=[*messages, {'role': 'user', 'content': user_input}],
+    options={
+        'stop': ["выход", "exit"]
+    }
+  )
+  print(response.message.content + '\n')
